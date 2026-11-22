@@ -1,0 +1,195 @@
+/* Promocje: notka Omnibus, pasek kampanii, strona /promocje/, strona kampanii, licznik, newsletter. */
+
+/* ---------- Notka Omnibus i oznaczenie danych przykładowych ---------- */
+.price-note {
+  display: block; margin: var(--s-1) 0 0;
+  font-family: var(--font-body); font-size: var(--fs-xs); font-weight: 400; font-stretch: 100%;
+  line-height: 1.35; letter-spacing: 0; color: var(--c-ink-soft);
+}
+.price-note strong { font-weight: 650; color: var(--c-ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.price-note__admin { display: block; margin-top: 2px; color: var(--c-warn); }
+.price-extra { display: grid; justify-items: start; gap: 3px; order: 5; flex-basis: 100%; min-width: 0; margin-top: 1px; }
+.price-extra .price-note { margin: 0; }
+.price-flag { padding: .1rem .4rem; font-family: var(--font-body); font-size: .6875rem; font-weight: 600; font-stretch: 100%; line-height: 1.3; letter-spacing: 0; white-space: normal; }
+.pcard__price .price-note { font-size: .6875rem; }
+/* Karta produktu: oznaczenie przykładu pod ceną, odznaka rabatu zostaje przy cenie. */
+.pbuy__price:has(.price-extra) { align-items: baseline; }
+.pbuy__price:has(.price-extra) .price { display: contents; }
+.pbuy__price:has(.price-extra) .badge--sale { order: 3; align-self: center; }
+.pbuy__price .price-extra { order: 4; }
+
+/* ---------- Pasek kampanii ---------- */
+.promo-bar { background: var(--c-white); color: var(--c-ink); border-bottom: 1px solid var(--c-line); font-size: var(--fs-sm); line-height: 1.35; }
+.promo-bar__in { display: grid; grid-template-columns: minmax(0, 1fr) 44px; grid-template-areas: 'head close' 'copy close'; align-items: center; column-gap: var(--s-2); padding-block: 5px; }
+.promo-bar__head { grid-area: head; display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--s-2); min-width: 0; margin: 0; }
+.promo-bar__name {
+  position: relative; padding-left: 16px;
+  font-family: var(--font-ui); font-size: .6875rem; font-weight: 650; font-stretch: 112%;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--c-rosso-dark); white-space: nowrap;
+}
+.promo-bar__name::before { content: ''; position: absolute; left: 0; top: 50%; width: 9px; height: 1px; background: var(--c-rosso); }
+.promo-bar .demo-flag { padding: .05rem .4rem; font-size: .6875rem; line-height: 1.35; }
+.promo-bar__copy { grid-area: copy; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 var(--s-3); min-width: 0; margin: 0; }
+.promo-bar__link {
+  position: relative; display: inline-flex; align-items: center; gap: .4em; flex: none;
+  font-family: var(--font-ui); font-size: .71875rem; font-weight: 650; font-stretch: 112%;
+  text-transform: uppercase; letter-spacing: .1em; text-decoration: none;
+}
+.promo-bar__link::after { content: ''; position: absolute; inset: -10px -6px; }
+.promo-bar__link svg { width: 15px; height: 15px; transition: transform var(--dur) var(--ease); }
+.promo-bar__link:hover svg { transform: translateX(3px); }
+.promo-bar__close {
+  grid-area: close; justify-self: end; display: inline-grid; place-items: center; width: 44px; height: 44px; margin-right: -10px; padding: 0;
+  background: transparent; border: 0; color: var(--c-ink-soft); border-radius: var(--radius-s);
+}
+.promo-bar__close svg { width: 16px; height: 16px; }
+.promo-bar__close:hover { color: var(--c-ink); background: var(--c-mist); }
+@media (max-width: 479px) {
+  .promo-bar__word { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+}
+@media (min-width: 720px) {
+  .promo-bar__in { grid-template-columns: auto minmax(0, 1fr) 44px; grid-template-areas: 'head copy close'; column-gap: var(--s-4); padding-block: 0; min-height: 44px; }
+}
+
+/* ---------- Nagłówek strony promocji i kampanii ---------- */
+.promo-hero { position: relative; background: var(--c-carbon); color: var(--c-white); overflow: hidden; }
+.promo-hero .ruler { color: var(--c-white); opacity: .28; }
+.promo-hero__in { display: grid; gap: var(--s-6); padding-block: clamp(1.25rem, .8rem + 2vw, 2.5rem) clamp(2rem, 1.2rem + 3.2vw, 4.5rem); }
+@media (min-width: 1000px) {
+  .promo-hero__in { grid-template-columns: minmax(0, 1.75fr) minmax(300px, 1fr); align-items: end; gap: var(--s-8); }
+}
+.promo-hero__main { min-width: 0; }
+.promo-hero .breadcrumbs { margin-bottom: clamp(1.25rem, .6rem + 2.8vw, 3.5rem); color: var(--c-silver); }
+.promo-hero .breadcrumbs ol { margin: 0; padding: 0; list-style: none; }
+.promo-hero .breadcrumbs [aria-current] { color: var(--c-fog); }
+.promo-hero .breadcrumbs a:hover { color: var(--c-white); }
+.promo-hero .breadcrumbs li + li::before { color: var(--c-steel); }
+.promo-hero__flag { margin: 0 0 var(--s-4); }
+.promo-hero__title { margin: 0 0 var(--s-4); overflow-wrap: anywhere; }
+.promo-hero__title em { color: var(--c-brass-light); }
+.promo-hero__lead { max-width: 38rem; margin-bottom: var(--s-4); }
+.promo-hero__dates { display: flex; align-items: flex-start; gap: var(--s-2); margin: 0; font-family: var(--font-ui); font-size: var(--fs-sm); font-weight: 500; font-stretch: 104%; color: var(--c-fog); }
+.promo-hero__dates svg { width: 18px; height: 18px; flex: none; margin-top: 1px; color: var(--c-brass-light); }
+.promo-hero__facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--s-4); margin: 0; }
+.promo-hero__facts > div { padding-top: var(--s-2); border-top: 1px solid rgb(255 255 255 / .28); }
+.promo-hero__facts dt { font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 600; font-stretch: 110%; text-transform: uppercase; letter-spacing: .1em; color: var(--c-silver); }
+.promo-hero__facts dd { margin: 0; font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+.promo-hero__side { min-width: 0; padding-top: var(--s-4); border-top: 1px solid rgb(255 255 255 / .28); }
+@media (min-width: 1000px) { .promo-hero__side { padding-top: 0; padding-left: var(--s-6); border-top: 0; border-left: 1px solid rgb(255 255 255 / .28); } }
+.promo-rate { margin: 0; font-family: var(--font-display); font-size: clamp(3.75rem, 2.6rem + 5vw, 6.5rem); line-height: .95; letter-spacing: -.02em; font-variant-numeric: lining-nums; white-space: nowrap; }
+.promo-rate__note { margin: var(--s-1) 0 0; font-size: var(--fs-sm); color: var(--c-fog); }
+
+/* ---------- Licznik ---------- */
+.promo-countdown { margin-top: var(--s-5); }
+.promo-countdown__title { margin: 0 0 var(--s-2); font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 600; font-stretch: 110%; text-transform: uppercase; letter-spacing: .12em; color: var(--c-silver); }
+.promo-countdown__units { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-2); max-width: 22rem; }
+.promo-countdown__unit { display: grid; gap: 1px; padding-top: var(--s-2); border-top: 1px solid rgb(255 255 255 / .28); }
+.promo-countdown__value { font-family: var(--font-display); font-size: clamp(1.875rem, 1.5rem + 1.4vw, 2.625rem); line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
+.promo-countdown__label { font-family: var(--font-ui); font-size: .6875rem; font-weight: 500; font-stretch: 104%; color: var(--c-silver); }
+.promo-countdown__done { margin: var(--s-3) 0 0; font-size: var(--fs-sm); color: var(--c-fog); }
+.promo-countdown.is-over .promo-countdown__units, .promo-countdown.is-over .promo-countdown__title { display: none; }
+
+/* ---------- Pasek podglądu i kampania przykładowa ---------- */
+.promo-preview { background: var(--c-info); color: var(--c-white); font-size: var(--fs-sm); line-height: 1.4; }
+.promo-preview__in { display: flex; flex-wrap: wrap; gap: 2px var(--s-2); padding-block: var(--s-3); }
+.promo-landing--preview .pcard__add { display: none; }
+.promo-demo { background: var(--c-info-tint); color: var(--c-info); }
+.promo-demo__in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2) var(--s-5); padding-block: var(--s-3); }
+.promo-demo__text { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) var(--s-3); margin: 0; font-size: var(--fs-sm); line-height: 1.4; }
+.promo-demo .demo-flag { background: var(--c-white); }
+.promo-demo .link-arrow { min-height: 44px; border-bottom: 0; padding-bottom: 0; text-decoration: underline; }
+
+/* ---------- Kafle kampanii ---------- */
+.promo-tiles { display: grid; gap: var(--s-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+.promo-tile {
+  position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-4) var(--s-5);
+  padding: var(--s-5); background: var(--c-white); border: 1px solid var(--c-line); border-radius: var(--radius-m);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.promo-tile:hover { border-color: var(--c-ink); box-shadow: var(--shadow-m); }
+.promo-tile__rate { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1; color: var(--c-rosso); white-space: nowrap; }
+.promo-tile__flag { margin: 0 0 var(--s-2); }
+.promo-tile__title { margin: 0 0 var(--s-2); font-size: var(--fs-h3); }
+.promo-tile__title a { text-decoration: none; }
+.promo-tile__title a::after { content: ''; position: absolute; inset: 0; }
+.promo-tile__meta { margin: 0 0 var(--s-3); font-size: var(--fs-sm); color: var(--c-ink-soft); }
+.promo-tile__cta { display: inline-flex; align-items: center; gap: .55em; font-family: var(--font-ui); font-size: .75rem; font-weight: 650; font-stretch: 112%; text-transform: uppercase; letter-spacing: .1em; }
+.promo-tile__cta svg { width: 16px; height: 16px; transition: transform var(--dur) var(--ease); }
+.promo-tile:hover .promo-tile__cta svg { transform: translateX(4px); }
+@media (max-width: 479px) { .promo-tile { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Pojedynczy model w promocji ---------- */
+.promo-spot { display: grid; background: var(--c-white); border-radius: var(--radius-m); overflow: hidden; }
+@media (min-width: 900px) { .promo-spot { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); } }
+.promo-spot__media { position: relative; display: block; aspect-ratio: 3 / 2; background: #f4f2ed; }
+.promo-spot__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 4%; mix-blend-mode: multiply; }
+.promo-spot__media .pcard__noimg { position: absolute; inset: 0; display: grid; place-items: center; color: var(--c-ink-soft); font-size: var(--fs-sm); }
+.promo-spot__body { display: flex; flex-direction: column; justify-content: center; gap: var(--s-3); min-width: 0; padding: clamp(1.25rem, .8rem + 2.2vw, 3rem); }
+.promo-spot__meta { margin: 0; font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 600; font-stretch: 110%; text-transform: uppercase; letter-spacing: .1em; color: var(--c-steel); }
+.promo-spot__title { margin: 0; font-size: var(--fs-h3); }
+.promo-spot__title a { text-decoration: none; }
+.promo-spot__price { display: grid; gap: var(--s-1); }
+.promo-spot__price .price { font-size: clamp(1.5rem, 1.25rem + 1vw, 2.125rem); }
+.promo-spot__price .price-note { font-size: var(--fs-sm); }
+.promo-spot__actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-2); }
+.promo-spot__actions .btn { flex: 1 1 180px; }
+
+/* ---------- Kupon kampanii ---------- */
+.promo-coupon-wrap { background: var(--c-white); border-bottom: 1px solid var(--c-line); }
+.promo-coupon { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3) var(--s-5); padding-block: var(--s-4); }
+.promo-coupon__text { margin: 0; }
+.promo-coupon__code { margin-left: .4em; padding: .2rem .6rem; border: 1px dashed var(--c-steel); border-radius: var(--radius-s); font-family: var(--font-ui); font-weight: 650; letter-spacing: .08em; }
+
+/* ---------- Zasady ---------- */
+.promo-count { margin: 0; font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.promo-rules__grid { display: grid; gap: var(--s-6) var(--s-8); }
+.promo-rules__grid h2 { margin-bottom: 0; }
+@media (min-width: 1000px) { .promo-rules__grid { grid-template-columns: minmax(260px, 1fr) minmax(0, 2.4fr); } }
+.promo-rules__list { display: grid; gap: var(--s-5); margin: 0; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .promo-rules__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .promo-rules__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.promo-rules__list > div { padding-top: var(--s-3); border-top: 1px solid var(--c-ink); }
+.promo-rules__list dt { margin-bottom: var(--s-2); font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 650; font-stretch: 110%; text-transform: uppercase; letter-spacing: .1em; }
+.promo-rules__list dd { margin: 0; font-size: var(--fs-sm); line-height: 1.55; color: var(--c-ink-soft); }
+.promo-rules__content { max-width: var(--container-narrow); margin-top: var(--s-7); }
+
+/* ---------- Stan pusty ---------- */
+.promo-empty h2 em { font-style: italic; }
+
+/* ---------- Newsletter ---------- */
+.nl { display: grid; gap: var(--s-5) var(--s-8); min-width: 0; }
+@media (min-width: 960px) {
+  .nl--wide { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: end; }
+}
+.nl__intro { min-width: 0; }
+.nl__title { margin: 0 0 var(--s-3); }
+.nl__title em { font-style: italic; }
+.on-dark .nl__title em { color: var(--c-brass-light); }
+.nl__lead { max-width: 34rem; margin: 0; color: var(--c-ink-soft); }
+.on-dark .nl__lead { color: var(--c-fog); }
+.nl-form { position: relative; display: grid; gap: var(--s-3); min-width: 0; }
+.nl-form__label { display: block; margin-bottom: var(--s-1); }
+.on-dark .nl-form__label { color: var(--c-fog); }
+.nl-form__row { display: grid; gap: var(--s-2); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 480px) { .nl-form__row { grid-template-columns: minmax(0, 1fr) auto; } }
+.nl-form__row .btn { min-height: 48px; }
+.on-dark .nl-form input[type=email] { background: var(--c-white); color: var(--c-ink); border-color: var(--c-white); }
+.nl-consent { display: flex; align-items: flex-start; gap: var(--s-2); margin: 0; font-size: var(--fs-xs); font-weight: 400; line-height: 1.5; color: var(--c-ink-soft); cursor: pointer; }
+.nl-consent input { margin-top: 1px; }
+.nl-consent a { color: inherit; text-decoration: underline; }
+.on-dark .nl-consent { color: var(--c-fog); }
+.on-dark .nl-consent a:hover { color: var(--c-white); }
+.nl-form__msg { margin: 0; padding: var(--s-3) var(--s-4); border-left: 3px solid currentColor; border-radius: var(--radius-s); font-size: var(--fs-sm); line-height: 1.45; background: var(--c-info-tint); color: var(--c-info); }
+.nl-form__msg--ok { background: var(--c-ok-tint); color: var(--c-ok); }
+.nl-form__msg--err { background: var(--c-err-tint); color: var(--c-err); }
+.nl-form.is-done .nl-form__row, .nl-form.is-done .nl-consent, .nl-form.is-done .nl-form__label { display: none; }
+
+/* Strony potwierdzenia i wypisania */
+.nl-page { padding-block: clamp(3rem, 2rem + 5vw, 7rem); }
+.nl-page__panel { max-width: 40rem; margin-inline: auto; padding: clamp(1.5rem, 1rem + 2.5vw, 3.5rem); background: var(--c-white); border: 1px solid var(--c-line); border-radius: var(--radius-m); }
+.nl-page__panel h1 { font-size: var(--fs-h2); }
+.nl-page__actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-5); }
+.nl-page__mail { font-weight: 600; overflow-wrap: anywhere; }
+.nl-page__coupon { margin: var(--s-4) 0 0; padding: var(--s-3) var(--s-4); background: var(--c-mist); border-radius: var(--radius-s); }
+.nl-page__coupon strong { font-family: var(--font-ui); letter-spacing: .08em; }

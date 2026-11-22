@@ -1,0 +1,67 @@
+/* Warstwa podglądu: oknem dialogowym, komunikatami i stanem ładowania. Kolory i odstępy z tokenów sklepu. */
+.pv-hydrating .shop-results,
+.pv-hydrating [data-shop-region="hero"] h1,
+.pv-hydrating [data-shop-region="hero"] .shop-hero__count,
+.pv-hydrating .shop-chips { visibility: hidden; }
+.pv-hydrating [data-shop-region="results"] { min-height: 60vh; }
+
+.pv-dialog .modal__panel { width: min(480px, 100%); padding: var(--s-6) var(--s-5) var(--s-5); }
+.pv-dialog__title { margin: var(--s-1) 0 var(--s-3); font-size: clamp(1.5rem, 1.25rem + 1vw, 1.9rem); line-height: 1.15; padding-right: var(--s-6); }
+.pv-dialog__text { margin: 0 0 var(--s-3); color: var(--c-ink-soft, inherit); font-size: var(--fs-s, .95rem); line-height: 1.55; }
+.pv-dialog__cond { padding: var(--s-2) var(--s-3); border-left: 2px solid var(--c-accent, currentColor); font-size: var(--fs-xs, .85rem); }
+.pv-dialog__actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-4); }
+.pv-dialog__actions .btn { flex: 1 1 auto; justify-content: center; }
+
+/* Kolory ustawione wprost: komunikat ma być czytelny także w ciemnych sekcjach (newsletter). */
+.pv-form-note { margin: var(--s-3) 0 0; padding: var(--s-3) var(--s-4); border-left: 2px solid var(--c-info); background: var(--c-info-tint); color: var(--c-info); font-size: var(--fs-sm); line-height: 1.5; outline: none; }
+.pv-form-note a { color: var(--c-info); font-weight: 650; text-decoration: underline; white-space: nowrap; }
+.pv-form-note a:hover { color: var(--c-ink); }
+
+.pv-bar { padding-block: .25rem; }
+.pv-bar a { text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+.pv-wl-note { margin-top: var(--s-3); }
+
+/* Strona „Jak działa zakup” */
+.pv-wt__intro { display: grid; gap: var(--s-5); padding-block: var(--s-5) var(--s-6); }
+.pv-wt__intro .notice { margin: 0; max-width: 62rem; }
+.pv-wt__toc ol { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; padding: 0; list-style: none; counter-reset: pv-toc; }
+.pv-wt__toc li { counter-increment: pv-toc; }
+.pv-wt__toc a { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: .35rem .8rem; border: 1px solid var(--c-line); border-radius: var(--radius-s); background: var(--c-white); font-size: var(--fs-sm); text-decoration: none; }
+.pv-wt__toc li:not(:last-child) a::before { content: counter(pv-toc); font-family: var(--font-ui); font-size: var(--fs-xs); font-weight: 650; color: var(--c-rosso); }
+.pv-wt__toc a:hover { border-color: var(--c-ink); }
+.pv-wt__part { padding-bottom: var(--s-7); }
+.pv-wt__h { margin: var(--s-6) 0 var(--s-5); font-size: var(--fs-h2); line-height: var(--lh-tight); }
+.pv-wt__sub { max-width: 46rem; margin: calc(var(--s-3) * -1) 0 var(--s-6); color: var(--c-fog); }
+.pv-step { display: grid; gap: var(--s-5); padding-block: var(--s-7); border-top: 1px solid var(--c-line); scroll-margin-top: 120px; }
+.pv-step__num { margin: 0 0 var(--s-2); font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1; color: var(--c-rosso); }
+.pv-step h3 { margin: 0 0 var(--s-3); font-size: var(--fs-h3); line-height: var(--lh-snug); }
+.pv-step__text p:not(.pv-step__num):not(.pv-step__note) { margin: 0; color: var(--c-ink-soft); }
+.pv-step__note { display: inline-block; margin: var(--s-3) 0 0; padding: .2rem .6rem; background: var(--c-warn-tint); color: var(--c-warn); font-size: var(--fs-xs); font-weight: 650; }
+.pv-step__media { min-width: 0; display: grid; gap: var(--s-4); }
+.pv-shots { display: flex; align-items: flex-start; gap: var(--s-4); }
+.pv-shot { min-width: 0; margin: 0; }
+.pv-shot a { display: block; }
+.pv-shot img { display: block; width: 100%; height: auto; border: 1px solid var(--c-line); border-radius: var(--radius-m); background: var(--c-white); box-shadow: var(--shadow-m); }
+.pv-shot--wide { flex: 1 1 0; }
+.pv-shot--phone { flex: 0 0 clamp(130px, 19vw, 240px); }
+@media (min-width: 1000px) {
+  .pv-step { grid-template-columns: minmax(250px, 320px) minmax(0, 1fr); gap: var(--s-7); }
+  .pv-step__text { position: sticky; top: 170px; align-self: start; }
+}
+@media (max-width: 719px) {
+  .pv-step { padding-block: var(--s-6); }
+  .pv-shots { flex-direction: column; }
+  .pv-shot--wide { flex: none; width: 100%; }
+  .pv-shot--phone { flex: none; width: min(72%, 280px); align-self: center; }
+}
+.pv-wt__owner { padding-block: var(--s-6) var(--s-8); background: var(--c-carbon); color: var(--c-white); }
+.pv-wt__owner .pv-wt__h { color: var(--c-white); }
+.pv-owner { display: grid; gap: var(--s-6); }
+@media (min-width: 900px) { .pv-owner { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.pv-owner__item { min-width: 0; }
+.pv-owner__item h3 { margin: var(--s-4) 0 var(--s-1); font-size: var(--fs-xl); color: var(--c-white); }
+.pv-owner__item p { margin: 0; color: var(--c-fog); font-size: var(--fs-sm); }
+.pv-owner .pv-shot img { border-color: var(--c-asphalt); }
+.pv-wt__end { padding-block: var(--s-8); text-align: center; }
+.pv-wt__end h2 { margin: 0 0 var(--s-5); font-size: var(--fs-h2); }
+.pv-wt__end .empty__actions { justify-content: center; }

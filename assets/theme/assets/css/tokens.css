@@ -1,0 +1,95 @@
+/* Tokeny projektu ModelCarShop — jedyne miejsce definicji kolorów, typografii i odstępów. */
+:root {
+  /* Showroom */
+  --c-carbon: #101114;
+  --c-graphite: #1a1c21;
+  --c-asphalt: #2a2d34;
+  --c-steel: #5a5e67;
+  --c-silver: #a9adb6;
+  --c-fog: #c9ccd2;
+
+  /* Galeria */
+  --c-line: #e2ded5;
+  --c-mist: #efece5;
+  --c-paper: #f8f6f1;
+  --c-white: #ffffff;
+  --c-ink: #17181c;
+  --c-ink-soft: #4d5058;
+
+  /* Akcenty */
+  --c-rosso: #c8102e;
+  --c-rosso-dark: #9f0c24;
+  --c-rosso-tint: #fbe9ec;
+  --c-brass: #b08d4f;
+  --c-brass-light: #d9bf8c;
+
+  /* Stany */
+  --c-ok: #17693f;
+  --c-ok-tint: #e5f2ea;
+  --c-warn: #8a5200;
+  --c-warn-tint: #fbf0dc;
+  --c-err: #b3261e;
+  --c-err-tint: #fbe8e6;
+  --c-info: #1f4e79;
+  --c-info-tint: #e6eff7;
+
+  /* Typografia */
+  --font-display: 'MCS Digits', 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --font-ui: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --fs-xs: .75rem;
+  --fs-sm: .875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: clamp(1.25rem, 1.1rem + .6vw, 1.5rem);
+  --fs-h3: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --fs-h2: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --fs-h1: clamp(2.5rem, 1.7rem + 3.6vw, 4.5rem);
+  --fs-display: clamp(3rem, 1.6rem + 6.4vw, 7.25rem);
+
+  --lh-tight: 1.04;
+  --lh-snug: 1.22;
+  --lh-body: 1.6;
+
+  /* Odstępy */
+  --s-1: .25rem;
+  --s-2: .5rem;
+  --s-3: .75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-section: clamp(3.5rem, 2.2rem + 5.5vw, 7.5rem);
+  --gutter: clamp(1rem, .55rem + 2vw, 2.5rem);
+  --container: 1440px;
+  --container-narrow: 760px;
+
+  /* Kształt i ruch */
+  --radius-s: 2px;
+  --radius-m: 4px;
+  --radius-l: 8px;
+  --shadow-s: 0 1px 2px rgb(16 17 20 / .08);
+  --shadow-m: 0 10px 30px -12px rgb(16 17 20 / .28);
+  --shadow-l: 0 30px 70px -24px rgb(16 17 20 / .5);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur: .22s;
+
+  --header-h: 72px;
+  --z-header: 50;
+  --z-drawer: 80;
+  --z-modal: 100;
+  --z-toast: 120;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur: 0s; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
